@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import {sequelize} from './database/database';
 import userRouter from './routes/userRouter';
+import feedbackRouter from './routes/feedbackRouter';
 
 const models = require('./models/models');
 
@@ -12,6 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use('/api/user', userRouter);
+app.use('/api/feedback', feedbackRouter)
 
 const PORT = process.env.PORT!
 
