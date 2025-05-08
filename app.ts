@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import {sequelize} from './database/database';
+import userRouter from './routes/userRouter';
 
 const models = require('./models/models');
 
@@ -8,7 +9,9 @@ dotenv.config();
 
 const app = express();
 
+
 app.use(express.json());
+app.use('/api/user', userRouter);
 
 const PORT = process.env.PORT!
 
