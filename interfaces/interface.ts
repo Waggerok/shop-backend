@@ -9,15 +9,14 @@ export interface IProduct {
     name : string;
     price : number;
     image : string;
-    type : string
+    type : string;
+    title: string;
+    description: string;
 }
-export interface IProductInfo {
-    id : number;
-    title : string;
-    description : string;
-}
+
 export interface IBasket {
     id : number;
+    userId: number;
 }
 export interface IBasketDevice {
     id : number;

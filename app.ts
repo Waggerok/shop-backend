@@ -13,6 +13,7 @@ const app = express();
 
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static("static"));
 app.use('/api/product', productRouter)
 app.use('/api/user', userRouter);

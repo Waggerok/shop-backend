@@ -1,5 +1,3 @@
-// import { IProductInfo } from './../interfaces/interface';
-import { IProduct, IProductInfo } from "../interfaces/interface";
 import { Request, Response } from "express";
 import models from "../models/models";
 
@@ -79,26 +77,36 @@ export class ProductContoller {
             return res.status(500).json({ message : 'Произошла ошибка на сервере при удалении товара по id' });
         }
     }
-    // async deleteProducts(req: Request,res: Response) {
-    //     try {
-    //         const products = await models.Product.findAll();
+    async editProductById(req: Request,res: Response) {
+        try {
+            const { id } = req.params;
 
-    //         if (products.length === 0) {
-    //             return res.status(404).json({ message : 'Похоже товары не найдены или не существуют' })
-    //         }
+            const body = req.body || {};
 
-            
-    //     }
-    //     catch(error) {
+            const { name, price, type, title, description } = body;
 
-    //     }
-    // }
-    // async editProductById(req: Request,res: Response) {
-    //     try {
+            const product = await models.Product.findByPk(id);
 
-    //     }
-    //     catch(error) {
+            if (!product) {
+                return res.status(404).json({ message : 'Товара не существует или не найден' });
+            };        
 
-    //     }
-    // }
+            const newImage = req.file?.filename;
+
+            await product.update({
+                name,
+                price,
+                type,
+                title,
+                description,
+                image : newImage,
+            });           
+
+            return res.status(200).json(product)
+        }
+        catch(error) {
+            console.error('При обновлении изменении товара произошла ошибка', error);
+            return res.status(500).json({ message: 'При обновлении товара произошла ошибка на сервере' })
+        }
+    }
 }

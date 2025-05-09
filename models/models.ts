@@ -10,7 +10,7 @@ const User = sequelize.define('user', {
 
 const Product = sequelize.define('product', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.STRING, unique: true, allowNull: false },
+    name: {type: DataTypes.STRING, allowNull: false },
     price: {type: DataTypes.INTEGER, allowNull: false},
     image: {type: DataTypes.STRING, allowNull: false},
     type: {type: DataTypes.STRING, allowNull: false},
@@ -20,10 +20,12 @@ const Product = sequelize.define('product', {
 
 const Basket = sequelize.define('basket', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    quantity: {type: DataTypes.INTEGER, allowNull: true, defaultValue : 1}
 });
 
 const BasketDevice = sequelize.define('basket_device', {
     id: {type : DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    quantity: {type : DataTypes.INTEGER, allowNull: false, defaultValue : 1}
 });
 
 const Feedback = sequelize.define('feedback', {

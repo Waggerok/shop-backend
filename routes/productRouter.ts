@@ -21,6 +21,10 @@ router.get('/getProduct/:id', async(req:Request, res:Response) => {
 
 router.delete('/deleteProduct/:id', async(req:Request, res:Response) => {
     await controller.deleteProductById(req,res);
+});
+
+router.put('/editProduct/:id', upload.single('image'), (req,res) => {
+    controller.editProductById(req,res);
 })
 
 export default router;
