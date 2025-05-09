@@ -13,12 +13,8 @@ const Product = sequelize.define('product', {
     name: {type: DataTypes.STRING, unique: true, allowNull: false },
     price: {type: DataTypes.INTEGER, allowNull: false},
     image: {type: DataTypes.STRING, allowNull: false},
-    type: {type: DataTypes.STRING, allowNull: false}
-});
-
-const ProductInfo = sequelize.define('product_info', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    title : {type: DataTypes.STRING, allowNull : false},
+    type: {type: DataTypes.STRING, allowNull: false},
+    title: {type: DataTypes.STRING, allowNull: false},
     description: {type: DataTypes.STRING, allowNull: false},
 });
 
@@ -57,13 +53,9 @@ Basket.belongsTo(Order);
 Basket.hasMany(BasketDevice);
 BasketDevice.belongsTo(Basket);
 
-Product.hasMany(ProductInfo);
-ProductInfo.belongsTo(Product);
-
 export default { 
     User,
     Product,
-    ProductInfo,
     Basket,
     BasketDevice,
     Feedback,

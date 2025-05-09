@@ -1,2 +1,3 @@
 export {UserController} from './userContoller'
 export {FeedBackController} from './feedbackController'
+export {ProductContoller} from './productController'
